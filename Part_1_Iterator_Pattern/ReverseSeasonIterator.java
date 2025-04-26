@@ -15,7 +15,7 @@ public class ReverseSeasonIterator implements EpisodeIterator {
     public boolean hasNext() {
         return position >= 0;
     }
-//lsks
+
     @Override
     public Episode next() {
         return episodes.get(position--);
