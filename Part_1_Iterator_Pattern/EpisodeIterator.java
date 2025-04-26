@@ -1,4 +1,13 @@
 package Part_1_Iterator_Pattern;
 
-public class EpisodeIterator {
+import java.util.Iterator;
+
+public interface EpisodeIterator extends Iterator<Episode> {
+    boolean hasNext();
+    Episode next();
+
+    @Override
+    default void remove() {
+        Iterator.super.remove();
+    }
 }
