@@ -1,0 +1,53 @@
+@startuml
+
+interface EpisodeIterator {
+    +hasNext(): boolean
+    +next(): Episode
+}
+
+class Episode {
+    -title: String
+    -runtimeSec: int
+    +getTitle(): String
+    +getRuntimeSec(): int
+}
+
+class Season {
+    -episodes: List<Episode>
+    +addEpisode(e: Episode)
+    +getEpisodes(): List<Episode>
+}
+
+class SeasonIterator {
+    -currentIndex: int
+    +hasNext(): boolean
+    +next(): Episode
+}
+
+class ReverseSeasonIterator {
+    -currentIndex: int
+    +hasNext(): boolean
+    +next(): Episode
+}
+
+class ShuffleSeasonIterator {
+    -shuffledEpisodes: List<Episode>
+    +hasNext(): boolean
+    +next(): Episode
+}
+
+class BingeIterator {
+    -seasons: List<Season>
+    -currentSeasonIndex: int
+    -currentEpisodeIndex: int
+    +hasNext(): boolean
+    +next(): Episode
+}
+
+EpisodeIterator <|-- SeasonIterator
+EpisodeIterator <|-- ReverseSeasonIterator
+EpisodeIterator <|-- ShuffleSeasonIterator
+Season "1" *-- "*" Episode
+BingeIterator "1" *-- "*" Season
+
+@enduml
